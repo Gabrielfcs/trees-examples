@@ -25,8 +25,8 @@ public class testTree {
         tree.insert(tree.getRoot(), 25);
         tree.insert(tree.getRoot(), 90);
         
-//        tree = tree.deleteNode(tree, tree.getRoot(), 60);
 //        tree.walkOnCentral(tree.getRoot());
+        tree = tree.deleteNode(tree, tree.getRoot(), 32);
         new treeGUI(tree);
     }
 }

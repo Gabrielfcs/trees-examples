@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 class DrawTree extends JPanel{
 	
+    public static final int FONT_SIZE = 12;
+    public static final int CIRCLE_SIZE = 30;
     public Tree tree;
 
     public DrawTree(Tree tree){
@@ -21,12 +23,12 @@ class DrawTree extends JPanel{
 
     @Override
     protected void paintComponent(Graphics graphics) {
-        graphics.setFont(new Font("Tahoma", Font.BOLD, 12));
+        graphics.setFont(new Font("Tahoma", Font.BOLD, FONT_SIZE));
         DrawTree(graphics, 0, getWidth(), 0, getHeight() / tree.getHeight(tree.getRoot()), tree.getRoot());
     }
 
     public void DrawNode(Graphics graphics,Node node,int width,int height,int q){
-        graphics.setFont(new Font("Tahoma", Font.BOLD, 12));
+        graphics.setFont(new Font("Tahoma", Font.BOLD, FONT_SIZE));
 
         if(node!=null){
             graphics.drawString(String.valueOf(node.getValue()), (this.getWidth()/q)+width, height);
@@ -42,9 +44,10 @@ class DrawTree extends JPanel{
 	
     public void DrawTree(Graphics graphics, int StartWidth, int EndWidth, int StartHeight, int Level, Node node) {
         String data = String.valueOf(node.getValue());
-        graphics.setFont(new Font("Tahoma", Font.BOLD, 12));
+        graphics.setFont(new Font("Tahoma", Font.BOLD, FONT_SIZE));
         FontMetrics fontMetrics = graphics.getFontMetrics();
         int dataWidth = fontMetrics.stringWidth(data);
+        graphics.drawOval(((StartWidth + EndWidth) / 2 - dataWidth / 2)-(CIRCLE_SIZE/4), (StartHeight + Level / 2)-(FONT_SIZE/2)-(CIRCLE_SIZE/2), CIRCLE_SIZE, CIRCLE_SIZE);
         graphics.drawString(data, (StartWidth + EndWidth) / 2 - dataWidth / 2, StartHeight + Level / 2);
 
         if (node.getLeft() != null) {

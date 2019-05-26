@@ -20,39 +20,39 @@ class DrawTree extends JPanel{
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        g.setFont(new Font("Tahoma", Font.BOLD, 20));
-        DrawTree(g, 0, getWidth(), 0, getHeight() / tree.getDepth(tree.getRoot()), tree.getRoot());
+    protected void paintComponent(Graphics graphics) {
+        graphics.setFont(new Font("Tahoma", Font.BOLD, 12));
+        DrawTree(graphics, 0, getWidth(), 0, getHeight() / tree.getHeight(tree.getRoot()), tree.getRoot());
     }
 
-    public void DrawNode(Graphics g,Node n,int w,int h,int q){
-        g.setFont(new Font("Tahoma", Font.BOLD, 20));
+    public void DrawNode(Graphics graphics,Node node,int width,int height,int q){
+        graphics.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-        if(n!=null){
-            g.drawString(String.valueOf(n.getValue()), (this.getWidth()/q)+w, h);
-            if(n.getLeft() !=null) {
-                DrawNode(g, n.getLeft(), -w, h*2, q);
+        if(node!=null){
+            graphics.drawString(String.valueOf(node.getValue()), (this.getWidth()/q)+width, height);
+            if(node.getLeft() !=null) {
+                DrawNode(graphics, node.getLeft(), -width, height*2, q);
             }
-            if(n.getRight() !=null) {
-                DrawNode(g, n.getRight(), w*2, h*2, q);
+            if(node.getRight() !=null) {
+                DrawNode(graphics, node.getRight(), width*2, height*2, q);
             }
         }
     }
 	
 	
-    public void DrawTree(Graphics g, int StartWidth, int EndWidth, int StartHeight, int Level, Node node) {
+    public void DrawTree(Graphics graphics, int StartWidth, int EndWidth, int StartHeight, int Level, Node node) {
         String data = String.valueOf(node.getValue());
-        g.setFont(new Font("Tahoma", Font.BOLD, 20));
-        FontMetrics fm = g.getFontMetrics();
-        int dataWidth = fm.stringWidth(data);
-        g.drawString(data, (StartWidth + EndWidth) / 2 - dataWidth / 2, StartHeight + Level / 2);
+        graphics.setFont(new Font("Tahoma", Font.BOLD, 12));
+        FontMetrics fontMetrics = graphics.getFontMetrics();
+        int dataWidth = fontMetrics.stringWidth(data);
+        graphics.drawString(data, (StartWidth + EndWidth) / 2 - dataWidth / 2, StartHeight + Level / 2);
 
         if (node.getLeft() != null) {
-            DrawTree(g, StartWidth, (StartWidth + EndWidth) / 2, StartHeight + Level, Level, node.getLeft());
+            DrawTree(graphics, StartWidth, (StartWidth + EndWidth) / 2, StartHeight + Level, Level, node.getLeft());
         }
         
         if (node.getRight() != null) {
-            DrawTree(g, (StartWidth + EndWidth) / 2, EndWidth, StartHeight + Level, Level, node.getRight());
+            DrawTree(graphics, (StartWidth + EndWidth) / 2, EndWidth, StartHeight + Level, Level, node.getRight());
         }
     }	
 }

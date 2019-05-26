@@ -80,6 +80,10 @@ public class Tree {
         return biggestHeight;
     }
     
+    public int getHeight(Node root) {
+        return getDepth(root)+1;
+    }
+    
     public int getElementsQuantity(Node root) {        
         int count = 0;
         if (root != null) {

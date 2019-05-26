@@ -1,4 +1,4 @@
-package pkg7_trees;
+package trees_examples;
 
 /**
  * Tree
